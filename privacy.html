@@ -1,23 +1,144 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head><meta charset="utf-8"><title>Privacy Policy — BeePuzzle</title></head>
-<body style="font-family: system-ui, sans-serif; max-width: 700px; margin: 40px auto; padding: 20px;">
-  <h1>Политика конфиденциальности</h1>
-  <p>Последнее обновление: 22 июня 2026</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика конфиденциальности — BeePuzzle</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #FFF4CC 0%, #FFE799 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 720px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(255, 180, 0, 0.2);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .app-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(255, 180, 0, 0.35);
+            margin-bottom: 12px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #C97F1B;
+            margin-bottom: 4px;
+        }
+        .subtitle {
+            font-size: 14px;
+            color: #888;
+        }
+        h2 {
+            font-size: 18px;
+            color: #C97F1B;
+            margin-top: 28px;
+            margin-bottom: 12px;
+        }
+        p, li {
+            font-size: 15px;
+            color: #444;
+            margin-bottom: 10px;
+        }
+        ul {
+            padding-left: 24px;
+        }
+        a {
+            color: #C97F1B;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .footer-back {
+            text-align: center;
+            margin-top: 32px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="icon.png" alt="BeePuzzle icon" class="app-icon">
+            <h1>Политика конфиденциальности</h1>
+            <p class="subtitle">BeePuzzle · Обновлено 08.07.2026</p>
+        </div>
 
-  <h2>Какие данные собирает BeePuzzle</h2>
-  <p>Игра НЕ собирает персональные данные. Прогресс хранится локально на устройстве (PlayerPrefs).</p>
+        <p>Настоящая Политика описывает какие данные собираются при использовании игры <b>BeePuzzle</b> («Пчелкины пазлы»), как они используются и с кем могут делиться. Устанавливая и используя приложение, вы соглашаетесь с условиями этой политики.</p>
 
-  <h2>Рекламные сети</h2>
-  <p>Для показа рекламы используется Yandex Mobile Ads SDK. Сеть может собирать обезличенные технические данные устройства (рекламный идентификатор, модель, версия ОС) для подбора рекламы. Подробнее: <a href="https://yandex.ru/legal/mobile_ads_sdk_agreement/">условия Yandex Mobile Ads</a>.</p>
+        <h2>1. Разработчик</h2>
+        <p>Приложение разработано физическим лицом <b>Пуцык Степан Николаевич</b> (статус: самозанятый, НПД).</p>
+        <p>Контакт для вопросов и запросов: <a href="mailto:putsyk.stepan@yandex.ru">putsyk.stepan@yandex.ru</a>.</p>
 
-  <h2>Дети</h2>
-  <p>Игра предназначена для детей от 0 лет.</p>
+        <h2>2. Какие данные собираются</h2>
+        <p>Приложение НЕ собирает и не запрашивает у пользователя персональные данные (имя, номер телефона, точное местоположение, фото, контакты).</p>
+        <p>Приложение автоматически передаёт следующую техническую информацию через сторонние SDK:</p>
+        <ul>
+            <li><b>Рекламный идентификатор устройства (Advertising ID)</b> — для показа релевантной рекламы.</li>
+            <li><b>Модель устройства, версия ОС, язык системы</b> — для аналитики стабильности и подбора рекламы.</li>
+            <li><b>Данные о сессии</b> — время старта/завершения игры, страна по IP, тип соединения.</li>
+            <li><b>События внутри игры</b> — прохождение уровней, использование бустеров, показы рекламы (обезличенно).</li>
+            <li><b>Данные о крашах</b> — стек ошибок для исправления багов.</li>
+        </ul>
 
-  <h2>Изменения</h2>
-  <p>При изменении политики дата обновления выше будет изменена.</p>
+        <h2>3. Локальное хранение прогресса</h2>
+        <p>Прогресс в игре (пройденные уровни, собранные монеты, настройки) сохраняется <b>локально на вашем устройстве</b> через стандартный механизм PlayerPrefs Unity. На серверы разработчика эти данные не передаются.</p>
+        <p>При удалении приложения или очистке данных прогресс безвозвратно теряется — облачное сохранение пока не реализовано.</p>
 
-  <h2>Контакт</h2>
-  <p>По вопросам: <a href="mailto:qwestom@gmail.com">qwestom@gmail.com</a></p>
+        <h2>4. Используемые SDK третьих сторон</h2>
+        <p>Приложение использует следующие сторонние сервисы:</p>
+        <ul>
+            <li><b>Yandex Mobile Ads</b> — показ рекламы. Политика: <a href="https://yandex.ru/legal/mobileads_termsofuse/" target="_blank" rel="noopener">yandex.ru/legal/mobileads_termsofuse</a></li>
+            <li><b>Yandex AppMetrica</b> — аналитика использования. Политика: <a href="https://yandex.ru/legal/appmetrica_agreement/" target="_blank" rel="noopener">yandex.ru/legal/appmetrica_agreement</a></li>
+            <li><b>Unity Analytics</b> (при наличии) — техническая аналитика движка Unity.</li>
+        </ul>
+
+        <h2>5. Реклама</h2>
+        <p>В приложении отображается реклама (полноэкранная и с вознаграждением). Она предоставляется рекламной сетью Yandex Mobile Ads и может использовать рекламный идентификатор устройства для персонализации.</p>
+        <p>Вы можете сбросить рекламный ID или отключить персонализацию в системных настройках вашего устройства (Настройки → Google / Конфиденциальность → Реклама).</p>
+
+        <h2>6. Возраст пользователей</h2>
+        <p>Игра рассчитана на аудиторию <b>0+ / 3+</b> и не содержит контента для взрослых. Мы не собираем осознанно данные детей до 13 лет — только обезличенную техническую информацию, общую для всех пользователей.</p>
+
+        <h2>7. Ваши права</h2>
+        <p>Вы имеете право:</p>
+        <ul>
+            <li>Запросить какие данные о вас были собраны.</li>
+            <li>Запросить удаление ваших данных из систем аналитики.</li>
+            <li>Отказаться от персонализированной рекламы через системные настройки устройства.</li>
+        </ul>
+        <p>Запросы направляйте на <a href="mailto:putsyk.stepan@yandex.ru">putsyk.stepan@yandex.ru</a> — ответ в течение 30 дней.</p>
+
+        <h2>8. Изменения политики</h2>
+        <p>Мы можем обновлять эту политику. Актуальная версия всегда доступна по адресу <a href="https://stepanputsyk.github.io/privacy.html">stepanputsyk.github.io/privacy.html</a>. Существенные изменения будут отражены в дате «Обновлено» в шапке.</p>
+
+        <h2>9. Контакты</h2>
+        <p>По любым вопросам, связанным с приватностью:<br>
+        📧 <a href="mailto:putsyk.stepan@yandex.ru">putsyk.stepan@yandex.ru</a></p>
+
+        <div class="footer-back">
+            <a href="index.html">← Вернуться на главную</a>
+        </div>
+    </div>
 </body>
 </html>
