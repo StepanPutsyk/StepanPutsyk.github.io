@@ -1,20 +1,141 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>BeePuzzle</title>
-  <style>
-    body { font-family: system-ui, sans-serif; max-width: 700px; margin: 40px auto; padding: 20px; }
-    h1 { color: #f5a623; }
-    a { color: #2563eb; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeePuzzle — Пчелкины пазлы</title>
+    <meta name="description" content="Казуальная головоломка про пчёл. Управляй ульем, собирай тайлы, проходи десятки уровней.">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #FFF4CC 0%, #FFE799 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #333;
+        }
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(255, 180, 0, 0.2);
+            text-align: center;
+        }
+        .emoji {
+            font-size: 64px;
+            display: block;
+            margin-bottom: 8px;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #C97F1B;
+        }
+        .subtitle {
+            font-size: 16px;
+            color: #888;
+            margin-bottom: 24px;
+        }
+        .description {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            color: #555;
+        }
+        .stores {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .store-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .store-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        .store-link.available {
+            background: #FFB700;
+            color: #fff;
+        }
+        .store-link.soon {
+            background: #f0f0f0;
+            color: #999;
+            cursor: default;
+        }
+        .store-link.soon:hover {
+            transform: none;
+            box-shadow: none;
+        }
+        .badge {
+            font-size: 12px;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 4px;
+        }
+        .badge.soon {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        .footer {
+            font-size: 14px;
+            color: #999;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+        .footer a {
+            color: #C97F1B;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-  <h1>🐝 BeePuzzle</h1>
-  <p>Пчелиная головоломка для Android.</p>
-  <p><a href="https://play.google.com/store/apps/details?id=ЗАМЕНИ_НА_СВОЙ_PACKAGE_ID">Скачать в Google Play</a></p>
-  <p><a href="privacy.html">Политика конфиденциальности</a></p>
-  <p><a href="mailto:qwestom@gmail.com">Контакт</a></p>
+    <div class="card">
+        <span class="emoji">🐝</span>
+        <h1>BeePuzzle</h1>
+        <p class="subtitle">Пчелкины пазлы</p>
+
+        <p class="description">
+            Казуальная головоломка с пчелиной тематикой. Управляй ульями, помогай пчёлам собирать тайлы, проходи десятки уровней с плавно растущей сложностью.
+        </p>
+
+        <div class="stores">
+            <a class="store-link available" href="https://www.rustore.ru/catalog/app/ru.qwestom.beepuzzle.rustore" target="_blank" rel="noopener">
+                📱 Скачать в RuStore
+            </a>
+            <a class="store-link soon">
+                🎮 Яндекс Игры <span class="badge soon">скоро</span>
+            </a>
+            <a class="store-link soon">
+                💙 VK Mini Apps <span class="badge soon">скоро</span>
+            </a>
+        </div>
+
+        <div class="footer">
+            <a href="privacy.html">Политика конфиденциальности</a>
+            ·
+            <a href="mailto:qwestom@gmail.com">Контакт</a>
+        </div>
+    </div>
 </body>
 </html>
