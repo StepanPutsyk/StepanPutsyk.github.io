@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
 
     <!-- VK Bridge — @vkontakte/vk-bridge для общения с VK Mini Apps API.
-         Грузится с CDN VK; альтернативно можно положить локально в TemplateData. -->
-    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+         Раздаётся ЛОКАЛЬНО (тот же хост что и игра) — не зависим от Cloudflare/CDN,
+         которые в РФ часто медленные или блокируются. Файл лежит в TemplateData/
+         и попадает в билд автоматически. Обновлять руками по мере выхода новых
+         версий vk-bridge (сейчас 2.15.0). -->
+    <script src="TemplateData/vk-bridge.min.js"></script>
 
     <style>
       html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
@@ -22,11 +25,11 @@
 
     <script>
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/VK_v1.0_20260716_1717.loader.js";
+      var loaderUrl = buildUrl + "/VK_v1.0_20260716_1809.loader.js";
       var config = {
-        dataUrl: buildUrl + "/VK_v1.0_20260716_1717.data.unityweb",
-        frameworkUrl: buildUrl + "/VK_v1.0_20260716_1717.framework.js.unityweb",
-        codeUrl: buildUrl + "/VK_v1.0_20260716_1717.wasm.unityweb",
+        dataUrl: buildUrl + "/VK_v1.0_20260716_1809.data.unityweb",
+        frameworkUrl: buildUrl + "/VK_v1.0_20260716_1809.framework.js.unityweb",
+        codeUrl: buildUrl + "/VK_v1.0_20260716_1809.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "BeePuzzle",
@@ -34,13 +37,44 @@
       };
       var canvas = document.querySelector("#unity-canvas");
       var script = document.createElement("script");
+      var _unityInstance = null;
       script.src = loaderUrl;
       script.onload = function () {
-        createUnityInstance(canvas, config).then(function () {
+        createUnityInstance(canvas, config).then(function (instance) {
+          _unityInstance = instance;
           console.log('[VK] Unity ready');
         }).catch(function (m) { alert(m); });
       };
       document.body.appendChild(script);
+
+      // Пауза звука/тайма при сворачивании VK-приложения или переключении вкладки.
+      // Без этого Unity WebGL продолжает крутить AudioContext даже когда игра скрыта —
+      // игрок слышит музыку из свёрнутого приложения. VK bridge не даёт нативный
+      // "app-pause" event, поэтому ловим стандартный visibilitychange.
+      function _setUnityMute(mute) {
+        if (!_unityInstance) return;
+        try {
+          // Оба флага: pause маршрутизирует через Unity's own pause API,
+          // muteAudio — прямой хук на AudioContext (работает даже когда игра не паузнута).
+          if (typeof _unityInstance.SetFullscreen !== 'function') { /* no-op guard */ }
+          // Unity 6 предоставляет Module.pauseAudio() / muteAudio через Emscripten.
+          if (_unityInstance.Module && typeof _unityInstance.Module._JS_Sound_SetPaused === 'function') {
+            _unityInstance.Module._JS_Sound_SetPaused(mute ? 1 : 0);
+          }
+          // Fallback: сообщаем Unity, чтобы она сама решила (нужен C#-компонент на сцене).
+          _unityInstance.SendMessage('BootstrapLoader', 'OnVisibilityChanged', mute ? 'hidden' : 'visible');
+        } catch (e) { /* ignore — компонент/метод могут быть недоступны */ }
+      }
+      document.addEventListener('visibilitychange', function () {
+        var hidden = document.visibilityState === 'hidden';
+        console.log('[VK] visibilitychange → ' + (hidden ? 'hidden (mute)' : 'visible (resume)'));
+        _setUnityMute(hidden);
+      });
+      // На iOS / некоторых мобильных браузерах visibilitychange не срабатывает при
+      // сворачивании — дополнительно ловим pagehide/blur.
+      window.addEventListener('pagehide', function () { _setUnityMute(true); });
+      window.addEventListener('blur',     function () { _setUnityMute(true); });
+      window.addEventListener('focus',    function () { _setUnityMute(false); });
     </script>
   </body>
 </html>
